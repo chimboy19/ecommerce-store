@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
-from store.models import product
+from store.models import Product
 
 def Home(request):
 
-    products=product.objects.all().filter(is_available=True)
+    products=Product.objects.all().filter(is_available=True)
     context={
         'products':products,
     }
