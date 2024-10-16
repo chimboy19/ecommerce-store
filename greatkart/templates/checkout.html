@@ -11,8 +11,8 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title mb-4">Billing Address</h4>
-        <form action="" method="POST">
-            {%csrf_token%}
+        <form action="{% url 'place_order' %}" method="POST">
+            {% csrf_token %} 
             <div class="form-row">
             <div class="col form-group">
                 <label for="">First Name</label>
@@ -30,7 +30,7 @@
             </div>
             <div class="col form-group">
                 <label for="">Phone Number</label>
-                <input type="text" name="last_name" class="form-control" required>
+                <input type="text" name="phone" class="form-control" required>
             </div>
             </div>
             <div class="form-row">
@@ -40,7 +40,7 @@
             </div>
             <div class="col form-group">
                 <label for="">Address Line 2</label>
-                <input type="text" name="address_line 2" class="form-control" required>
+                <input type="text" name="address_line 2" class="form-control" >
             </div>
             </div>
             <div class="form-row">
@@ -61,7 +61,7 @@
                 <label for="">Order Note</label>
                 <textarea name="order_note" id="" rows="2" class="form-control"></textarea>
             </div>
-      
+        <!-- </form> -->
     </div>
 </div> <!-- card.// -->
 
@@ -116,9 +116,9 @@
 </tbody>
 </table>
 			<!-- <a href="./place-order.html" class="btn btn-primary btn-block"> Place-Order </a> -->
-            <button type="submit" name="sumbit" class="btn btn-primary btn-block">Place-Order</button>
-			<a href="{%url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>
-              </form>
+<button type="submit"  class="btn btn-primary btn-block">Place-Order</button>
+<a href="{%url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>
+            </form>
 		</div> <!-- card-body.// -->
 		</div> <!-- card.// -->
 
