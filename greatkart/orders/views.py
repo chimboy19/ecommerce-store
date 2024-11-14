@@ -1,13 +1,14 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django .http import HttpResponse,JsonResponse
 from  carts.models import Cartitem
 from .forms import OrderForm
 from .models import Order,Payment,OrderProduct
-from store.models import Product
+from store.models import Product,Variation
 import datetime
 import json
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from django .contrib import messages
 
 
 # Create your views here.
@@ -95,6 +96,9 @@ def place_order(request, total=0, quantity=0,):
     tax=(2*total)/100    
     grand_total= total + tax
 
+
+    # this was added by me ////////////////////////////
+
     if request.method =='POST':
         form=OrderForm(request.POST)
         if form.is_valid():
@@ -127,6 +131,17 @@ def place_order(request, total=0, quantity=0,):
             order_number=current_date + str(data.id)
             data.order_number=order_number
             data.save()
+            #added by me
+            for cart_item in cart_items:
+               for selected_variation in cart_item.variations.all():
+                if selected_variation.stock >= cart_item.quantity:
+                      selected_variation.stock -= cart_item.quantity
+                      selected_variation.save()
+                else:
+                   messages.error(request, 'The selected variation is unavaliable')
+                   return redirect('store')
+                # added by me
+
             order=Order.objects.get(user=current_user,is_ordered=False)
             context={
             'order':order,

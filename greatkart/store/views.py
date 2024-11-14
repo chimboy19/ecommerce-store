@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404 ,redirect
-from .models import Product,ReviewRating
+from .models import Product,ReviewRating,ProductGallery
 from orders.models import OrderProduct
 from category.models import Category
 from carts.models import Cartitem
@@ -61,6 +61,10 @@ def product_detail(request, category_slug ,product_slug):
     
     reviews= ReviewRating.objects.filter(product_id=single_product.id,status=True)
  
+   # get the product gallery als run python  manage.py collectstatic
+    product_gallery=ProductGallery.objects.filter(product_id=single_product.id)
+    
+    available_variations = single_product.variation_set.filter(stock__gt=0)  # Only include variations with stock > 0
 
 
     context={
@@ -68,7 +72,9 @@ def product_detail(request, category_slug ,product_slug):
         'single_product' : single_product,
         'in_cart' : in_cart,
         'orderproduct': orderproduct,
-        'reviews' : reviews
+        'reviews' : reviews,
+        'product_gallery' : product_gallery,
+        'available_variations':available_variations
     }
 
     return render(request,'product_detail.html',context)
@@ -76,11 +82,14 @@ def product_detail(request, category_slug ,product_slug):
 
 
 def search(request):
+    
     if 'keyword' in request.GET:
         keyword = request.GET ['keyword']
         if keyword:
             products=Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword ) | Q(product_name__icontains=keyword))
             product_count=products.count()
+       
+            
     context={
         'products':products,
         'product_count': product_count

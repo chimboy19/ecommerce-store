@@ -19,9 +19,11 @@ from django.urls import include, path
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.utils.translation import gettext_lazy as _
+# install django-admin-honeyport to create fake admin panel record hacking attempts
 urlpatterns = [
-    path('admin/', admin.site.urls),
+   # path('admin/',include('admin_honeypot.urls',namespace='admin_honeypot')),
+    path('vibeadmin/', admin.site.urls),
     path('', views.Home,name='home'),
     path('store/', include('store.urls')),
     path('cart/', include('carts.urls')),

@@ -19,7 +19,7 @@
 		<div class="col-md-12">
         <table class="table table-hover">
   <thead>
-    <tr>
+    <tr class="or-head">
       <th scope="col">Order #</th>
       <th scope="col">Billing Name</th>
       <th scope="col">Phone</th>
@@ -30,11 +30,11 @@
   <tbody>
     {% for order in orders %}
     <tr>
-      <th scope="row"><a href="{% url 'order_details' order.order_number %}">{{order.order_number}}</a></th>
-      <td>{{order.full_name}}</td>
-      <td>{{order.phone}}</td>
-      <td>₦{{order.order_total}}</td>
-      <td>{{order.created_at}}</td>
+      <th class="in-order"  scope="row"><a href="{% url 'order_details' order.order_number %}">{{order.order_number}}</a></th>
+      <td class="in-order">{{order.full_name}}</td>
+      <td class="in-order">{{order.phone}}</td>
+      <td class="in-order">₦{{order.order_total}}</td>
+      <td class="in-order">{{order.created_at}}</td>
     </tr>
    {%endfor%}
    

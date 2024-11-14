@@ -4,6 +4,7 @@ from .models import Cartitem,Cart
 from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django .contrib import messages
 # Create your views here.
 
 def _cart_id(request):
@@ -64,6 +65,16 @@ def add_cart(request,product_id):
                     item=Cartitem.objects.get(product=product, id=item_id)
                     item.quantity +=1
                     item.save()
+                      
+                   # Check stock before increasing quantity added by me//////////////
+                    selected_variation_stock = min([v.stock for v in item.variations.all()])
+                    if item.quantity + 1 <= selected_variation_stock:
+                       item.quantity += 1
+                       item.save()
+                    else:
+                      messages.error(request, "Not enough stock available.")
+                      return redirect('cart')
+                    # added by me/////////////////////
 
                 else:
                     item= Cartitem.objects.create(product=product,quantity=1,user=current_user)
@@ -153,6 +164,16 @@ def add_cart(request,product_id):
                     item=Cartitem.objects.get(product=product, id=item_id)
                     item.quantity +=1
                     item.save()
+                    selected_variation_stock = min([v.stock for v in item.variations.all()])
+                    if item.quantity + 1 <= selected_variation_stock:
+                       item.quantity += 1
+                       item.save()
+                    else:
+                       messages.error(request, "Not enough stock available.")
+                       return redirect('cart')
+                  
+
+
 
                 else:
                     item= Cartitem.objects.create(product=product,quantity=1,cart=cart)
@@ -229,6 +250,8 @@ def cart(request , total=0, quantity=0, cart_items=None):
       for cart_item in cart_items:
           total+=(cart_item.product.price*cart_item.quantity)
           quantity+=cart_item.quantity
+          cart_item.selected_variation_stock = min([v.stock for v in cart_item.variations.all()])
+
       tax=(2*total)/100    
       grand_total= total + tax
     except ObjectDoesNotExist:  

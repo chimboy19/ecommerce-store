@@ -15,6 +15,7 @@
 <!-- jQuery -->
 <script src="{%static 'js/jquery-2.0.0.min.js'%}" type="text/javascript"></script>
 
+
 <!-- Bootstrap4 files-->
 <script src="{%static 'js/bootstrap.bundle.min.js'%}" type="text/javascript"></script>
 <link href="{%static 'css/bootstrap.css'%}" rel="stylesheet" type="text/css"/>
@@ -28,6 +29,7 @@
 <link href="{%static 'css/ui.css'%}" rel="stylesheet" type="text/css"/>
 
 <link href="{%static 'css/responsive.css'%}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
 
 <!-- custom javascript -->
 <script src="{%static 'js/script.js'%}" type="text/javascript"></script>
@@ -73,7 +75,7 @@ $(document).ready(function() {
 
 <section class="header-main border-bottom">
 	<div class="container">
-<div class="row align-items-center">
+<div class="row align-items-center  ">
 	<div class="col-lg-2 col-md-3 col-6">
 		<a href="{% url 'home' %}" class="brand-wrap">
 			<!-- <img class="logo" src="{%static './images/logo.png'%}"> -->
@@ -92,11 +94,11 @@ $(document).ready(function() {
 			</div>
 		</div>  <!-- category-wrap.// -->
 	</div> <!-- col.// -->
-	<a href="{% url 'store' %}" class="btn btn-outline-primary">Store</a>
-	<div class="col-lg  col-md-6 col-sm-12 col">
+	<a href="{% url 'store' %}" class="btn btn-outline-primary mb-1 mx-2">Store</a>
+	<div class="col-lg  col-md-6 col-sm-12 ">
 		<form action="{% url 'search' %}" class="search">
 			<div class="input-group w-100">
-			    <input type="text" class="form-control" style="width:60%;" placeholder="Search"  name=keyword>
+			    <input type="text" class="form-control" style="width:60%;" placeholder="Search" required name=keyword>
 			    
 			    <div class="input-group-append">
 			      <button type="submit" class="btn btn-primary" type="submit">
@@ -106,16 +108,19 @@ $(document).ready(function() {
 		    </div>
 		</form> <!-- search-wrap .end// -->
 	</div> <!-- col.// -->
-	<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
+	<div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3" >
 				<div class="d-flex justify-content-end mb-3 mb-lg-0">
 					{% if user.id is None %}
+					
 					<div class="widget-header">
 						<small class="title text-muted">Welcome guest!</small>
 						<div> 
+							
 							<a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
 							<a href="{% url 'register' %}"> Register</a>
 						</div>
 					</div>
+					
 					{%else%}
                         <div class="widget-header"></div>
 						<small class="title text-muted">Welcome   {{user.first_name}}!</small>
@@ -171,6 +176,18 @@ $(document).ready(function() {
 	</div><!-- //container -->
 </footer>
 <!-- ========================= FOOTER END // ========================= -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script>
+	$(document).ready(function(){
+    $('.thumb a').click(function(e){
+        e.preventDefault();
+        $('.mainImg img ').attr('src', $(this).attr("href"));
+    });
+});
 
+
+
+</script>
 </body>
 </html>

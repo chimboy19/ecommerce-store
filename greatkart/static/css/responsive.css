@@ -20,9 +20,19 @@
   .table-shopping-cart .itemside .aside {
     display: none;
   }
+  
 }
 @media all and (max-width: 768px) {
+
+    
   /* mobile devices */
+
+  .or-head{
+    font-size: 12px;
+  }
+  .in-order{
+    font-size: 10px;
+  }
   .mobile-block {
     display: block;
   }
@@ -81,4 +91,8 @@
   }
 }
 
+
+@media all and (max-width:582px){
+  
+}
 /*# sourceMappingURL=responsive.css.map */

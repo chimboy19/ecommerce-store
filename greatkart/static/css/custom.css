@@ -22,13 +22,13 @@
 }
 
 .rate .half::before{
-    content: '\f089';
+    content: "\f089";
     position: absolute;
     padding-right:0;
 }
 
 /* click and hover */
-input:checked ~ label, label:hover ~label{
+input:checked ~ label, label:hover~label{
     color: #ffb503 ;
 }
 
@@ -43,4 +43,23 @@ input:checked + label:hover,input:checked~label:hover,input:checked ~ label:hove
  .rating-star  i{
      color: #ffb503;
      /* background-color: #ffb503; */
+ }
+
+ 
+ ul.thumb{
+  margin: 0 auto;
+  padding: 0;
+  float: left;
+ }
+
+ ul.thumb li{
+    list-style: none;
+    margin: 10px;
+    /* border: 2px solid red; */
+ }
+
+ ul.thumb li img{
+    width: 80px;
+    height: 80px;
+    border: 2px solid grey;
  }

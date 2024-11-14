@@ -3,7 +3,7 @@
 {%block pagecontent%}
 {% load static %}
 
-
+{%include 'alerts.html' %}
 
 <section class="section-content padding-y bg">
 <div class="container">
@@ -37,6 +37,7 @@
 		<figure class="itemside align-items-center">
 			<div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
 			<figcaption class="info">
+			
 				<a href="{{cart_item.product.get_url}}" class="title text-dark">{{cart_item.product.product_name}}</a>
 				<p class="text-muted small">
 					{% if cart_item.variations.all %}
@@ -57,12 +58,18 @@
 							</div>
 							<input type="text" class="form-control"  value="{{cart_item.quantity}}
 							<div class="input-group-append">
+								
 								<form action="{% url 'add_cart' cart_item.product.id %}" method="POST">
 								{%csrf_token%}
 								{% for item in cart_item.variations.all %}
 								<input type="hidden" name="{{item.variation_category | lower}}" value="{{item.variation_value | capfirst}}">
 									{%endfor%}
-									<button  class="btn btn-light" type="sumbit" id="button-plus"> <i class="fa fa-plus"></i> </button>
+									
+									<button  class="btn btn-light" type="sumbit" id="button-plus" 
+									 {% if cart_item.quantity >= cart_item.selected_variation_stock %} disabled {% endif %} >
+										<i class="fa fa-plus"></i>
+									 </button>
+                                    
 								</form>
 							</div>
 						</div> <!-- input-group.// -->
