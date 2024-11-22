@@ -30,4 +30,11 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('orders/', include('orders.urls')),
 
-] + static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)
+] #+ static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)
+if not settings.DEBUG:  # Only serve media files in production
+    from django.views.static import serve
+    from django.urls import re_path
+
+    urlpatterns += [
+        re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]
