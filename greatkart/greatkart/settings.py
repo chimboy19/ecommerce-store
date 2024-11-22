@@ -154,9 +154,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
+
 STATIC_URL = '/static/'
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #STATICFILES_DIRS = [BASE_DIR / "static", '/var/www/static/',]
 
@@ -164,8 +165,8 @@ STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 #media files configurations
 
-MEDIA_URL='/media/'
-MEDIA_ROOT=BASE_DIR/'media'
+#MEDIA_URL='/media/'
+#MEDIA_ROOT=BASE_DIR/'media'
 
 from django.contrib.messages import constants as messages
 

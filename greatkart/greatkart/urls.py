@@ -20,6 +20,9 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django.views.static import serve
+from django.urls import re_path
+
 # install django-admin-honeyport to create fake admin panel record hacking attempts
 urlpatterns = [
    # path('admin/',include('admin_honeypot.urls',namespace='admin_honeypot')),
@@ -31,10 +34,9 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
 
 ] #+ static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)
-if not settings.DEBUG:  # Only serve media files in production
-    from django.views.static import serve
-    from django.urls import re_path
-
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
     urlpatterns += [
         re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     ]
