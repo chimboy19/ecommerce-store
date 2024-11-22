@@ -4,7 +4,9 @@ from store.models import Product,ReviewRating
 def Home(request):
 
     products=Product.objects.all().filter(is_available=True).order_by('-created_date')
-    for product in products:
+    reviews=[]
+    if products.exists():
+      for product in products:
         reviews= ReviewRating.objects.filter(product_id=product.id,status=True)
  
     context={

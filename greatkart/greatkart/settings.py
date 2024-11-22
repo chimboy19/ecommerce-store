@@ -29,7 +29,7 @@ SECRET_KEY =config('SECRET_KEY')
 DEBUG = config('DEBUG',default=True, cast=bool)
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS=[]
 
 # Application definition
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
+    'whitenoise.runserver_nostatic'
     
 
 ]
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_session_timeout.middleware.SessionTimeoutMiddleware',
+    'whitenoise.middleware.whiteNoiseMiddleware',
 ]
 
 SESSION_EXPIRE_SECONDS = 3600  # 1 hour
@@ -92,8 +94,15 @@ AUTH_USER_MODEL='accounts.Account'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME' :'railway',
+        'USER':'postgres',
+        'PASSWORD':'OFLpveeZaKznXvxgBPIsqwRfnlLtYfYV',
+        'HOST':'junction.proxy.rlwy.net',
+        'PORT':'13511',
+    #    postgresql://postgres:OFLpveeZaKznXvxgBPIsqwRfnlLtYfYV@junction.proxy.rlwy.net:13511/railway
     }
 }
 
@@ -146,8 +155,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR / "static", '/var/www/static/',
 
+
 ]
 
+# whitenoise
+STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 #media files configurations
 
 MEDIA_URL='/media/'
