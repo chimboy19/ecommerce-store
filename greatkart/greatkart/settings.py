@@ -29,7 +29,7 @@ SECRET_KEY =config('SECRET_KEY')
 DEBUG = config('DEBUG',default=True, cast=bool)
 
 ALLOWED_HOSTS = ['ecommerce-store-production-d6e1.up.railway.app','https://ecommerce-store-production-d6e1.up.railway.app']
-CSRF_TRUSTED_ORIGINS=['ecommerce-store-production-d6e1.up.railway.app','https://ecommerce-store-production-d6e1.up.railway.app']
+CSRF_TRUSTED_ORIGINS=['https://ecommerce-store-production-d6e1.up.railway.app']
 
 # Application definition
 
