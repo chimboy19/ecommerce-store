@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'store',
     'carts',
     'orders',
-    'whitenoise.runserver_nostatic'
+    'whitenoise.runserver_nostatic',
+    'cloudinary',
+    'cloudinary_storage',
     
 
 ]
@@ -149,11 +151,23 @@ USE_TZ = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+cloudinary.config(
+    cloud_name="dsravh4ex", 
+    api_key="546261611521594", 
+    api_secret="NTtPrFLsMAEV5xi3KijnutzLW1I",
+    secure=True
+)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://res.cloudinary.com/dsravh4ex/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_ROOT = '/media/'
+#MEDIA_ROOT = '/media/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+from cloudinary.models import CloudinaryField
 # Create your models here.
 class MyAccountManger(BaseUserManager):
     def create_user(self,first_name,last_name,username,email,password=None):
@@ -79,7 +80,8 @@ class UserProfile(models.Model):
     user=models.OneToOneField(Account,on_delete=models.CASCADE)
     address_line_1=models.CharField(blank=True,max_length=100)
     address_line_2=models.CharField(blank=True,max_length=100)
-    profile_picture=models.ImageField(blank=True,upload_to='userprofile')
+    #profile_picture=models.ImageField(blank=True,upload_to='userprofile')
+    profile_picture=CloudinaryField('image')
     city=models.CharField(blank=True,max_length=50)
     state=models.CharField(blank=True,max_length=50)
     country=models.CharField(blank=True,max_length=50)
