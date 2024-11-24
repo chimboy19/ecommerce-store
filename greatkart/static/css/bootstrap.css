@@ -69,6 +69,7 @@ body {
   color: #343a40;
   text-align: left;
   background-color: #fff;
+  overflow-x: hidden;
 }
 
 [tabindex="-1"]:focus {
@@ -189,7 +190,9 @@ samp {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
 }
-
+.hide{
+  display: none;
+}
 pre {
   margin-top: 0;
   margin-bottom: 1rem;

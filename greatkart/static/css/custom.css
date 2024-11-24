@@ -1,3 +1,4 @@
+
 .rate input{
     display: none;
 }
@@ -63,3 +64,5 @@ input:checked + label:hover,input:checked~label:hover,input:checked ~ label:hove
     height: 80px;
     border: 2px solid grey;
  }
+
+ 

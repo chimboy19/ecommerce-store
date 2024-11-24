@@ -24,15 +24,15 @@
 <thead class="text-muted">
 <tr class="small text-uppercase">
   <th scope="col">Product</th>
-  <th scope="col" width="120">Quantity</th>
-  <th scope="col" width="120">Price</th>
-  <th scope="col" class="text-right" width="200"> </th>
+  <th scope="col" width="60">Quantity</th>
+  <th scope="col" width="60">Price</th>
+  <!-- <th scope="col" class="" width=""> </th> -->
 
   {% for cart_item in cart_items%}
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr >
 	<td>
 		<figure class="itemside align-items-center">
 			<div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
@@ -75,16 +75,30 @@
 						</div> <!-- input-group.// -->
 					</div> <!-- col.// -->
 	</td>
-	<td> 
+	<td > 
 		<div class="price-wrap"> 
 			<var class="price">₦{{cart_item.sub_total}}</var> 
 			<small class="text-muted">₦ {{cart_item.product.price}} </small> 
 		</div> <!-- price-wrap .// -->
+		<div class="hide">
+			<a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" onclick="return confirm('Are you sure you want to delete this item ?')" class="btn btn-danger"> Remove</a>
+
+		</div>
 	</td>
+	<br>
 	<td class="text-right"> 
-	<a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" onclick="return confirm('Are you sure you want to delete this item ?')" class="btn btn-danger"> Remove</a>
+		
+		<div >
+			<a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" onclick="return confirm('Are you sure you want to delete this item ?')" class="btn btn-danger"> Remove</a>
+
+		</div>
 	</td>
+	<!-- <div class="hide">
+	<a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id %}" onclick="return confirm('Are you sure you want to delete this item ?')" class="btn btn-danger"> Remove</a>
+
+</div> -->
 </tr>
+
 {%endfor%}
 
 </tbody>

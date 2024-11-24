@@ -92,7 +92,30 @@
 }
 
 
-@media all and (max-width:582px){
-  
+@media all and (max-width:490px){
+  .itemside {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .itemside .aside {
+        flex: 0 0 100%;
+        margin-bottom: 10px;
+    }
+
+    .itemside .info {
+        flex: 0 0 100%;
+    }
+
+    .input-spinner {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-danger {
+        width: 100%;
+        margin-top: 10px;
+    }
 }
 /*# sourceMappingURL=responsive.css.map */

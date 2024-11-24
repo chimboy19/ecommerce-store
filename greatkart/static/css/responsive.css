@@ -92,7 +92,30 @@
 }
 
 
-@media all and (max-width:582px){
-  
+@media all and (max-width:490px){
+  .text-right{
+   
+    display: none;
+  }
+
+  .table-shopping-cart.table td{
+    padding: 4px;
+  }
+
+  .hide{
+    display: block;
+    margin-top: 10px;
+  }
+  .card{
+    padding-inline:10px ;
+  }
+}
+
+
+@media all and (max-width:375){
+  .btn-danger{
+    padding: 5px;
+  }
 }
 /*# sourceMappingURL=responsive.css.map */
+
