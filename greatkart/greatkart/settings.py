@@ -33,7 +33,7 @@ DEBUG = os.getenv('DEBUG',default=True)
 # ALLOWED_HOSTS = ['ecommerce-store-production-d6e1.up.railway.app','https://ecommerce-store-production-d6e1.up.railway.app']
 # CSRF_TRUSTED_ORIGINS=['https://ecommerce-store-production-d6e1.up.railway.app']
 ALLOWED_HOSTS = ['vibe-space-1ucu.onrender.com']
-CSRF_TRUSTED_ORIGINS=['vibe-space-1ucu.onrender.com']
+CSRF_TRUSTED_ORIGINS=['https://vibe-space-1ucu.onrender.com']
 # Application definition
 
 INSTALLED_APPS = [
